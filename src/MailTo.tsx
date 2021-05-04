@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -27,7 +27,6 @@ export default function MailTo() {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     setValues({ ...values, [name]: value });
-    componentDidUpdate(values);
   }
 
   let url = `mailto:${values.email}`;
