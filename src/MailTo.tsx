@@ -98,6 +98,12 @@ export default function MailTo() {
       >
         動作確認用リンク
       </Button>
+
+      <CopyToClipboard text={url}>
+        <Button variant="contained" color="primary">
+          URLをクリップボードにコピーする
+        </Button>
+      </CopyToClipboard>
     </Grid>
   );
 }
