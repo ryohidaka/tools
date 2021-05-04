@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
