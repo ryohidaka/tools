@@ -51,9 +51,6 @@ export default function MailTo() {
           id="email"
           label="送信先メールアドレス"
           type="email"
-          InputLabelProps={{
-            shrink: true,
-          }}
           variant="outlined"
           name="email"
           onChange={handleInputChange}
@@ -64,9 +61,6 @@ export default function MailTo() {
           id="subject"
           label="指定する件名"
           type="text"
-          InputLabelProps={{
-            shrink: true,
-          }}
           variant="outlined"
           name="subject"
           onChange={handleInputChange}
