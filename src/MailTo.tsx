@@ -27,7 +27,6 @@ export default function MailTo() {
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     setValues({ ...values, [name]: value });
-    componentDidUpdate(values);
   }
 
   let url = `mailto:${values.email}`;
