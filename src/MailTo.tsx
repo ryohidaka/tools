@@ -63,7 +63,7 @@ export default function MailTo() {
   //[永続化] LocalStorageに格納
   useEffect(() => {
     componentDidLoad(values);
-  }, []);
+  }, [values]);
 
   function componentDidLoad(values: Values) {
     const payload = JSON.parse(localStorage.getItem("values") as any);
