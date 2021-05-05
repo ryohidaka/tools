@@ -51,6 +51,9 @@ export default function MailTo() {
 
   return (
     <Grid container direction="column" className={classes.root}>
+      <Typography variant="h4" component="h1" align="center">
+        メールテンプレート作成
+      </Typography>
       <Grid container direction="row">
         <Grid
           container
@@ -61,6 +64,9 @@ export default function MailTo() {
           xs={12}
           md={6}
         >
+          <Typography variant="h5" component="h2">
+            ①入力
+          </Typography>
           <form noValidate autoComplete="off">
             <TextField
               id="email"
@@ -109,9 +115,15 @@ export default function MailTo() {
         </Grid>
       </Grid>
 
-      <Typography variant="h5" component="p">
+      {/* 2.確認 */}
+      <Typography variant="h5" component="h2" align="center">
+        ②確認
+      </Typography>
+
+      <Typography variant="body1" component="code">
         {url}
       </Typography>
+
       <Button
         variant="outlined"
         color="primary"
@@ -122,6 +134,10 @@ export default function MailTo() {
         動作確認用リンク
       </Button>
 
+      {/* 3.コピー */}
+      <Typography variant="h5" component="h2" align="center">
+        ③コピー
+      </Typography>
       <CopyToClipboard text={url}>
         <Button variant="contained" color="primary">
           URLをクリップボードにコピーする
