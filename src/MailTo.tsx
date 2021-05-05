@@ -3,7 +3,9 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Typography, Button, Snackbar } from "@material-ui/core";
+import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
+import Alert from "@material-ui/lab/Alert";
 
 import Mockup from "./Mockup";
 
@@ -28,11 +30,23 @@ export default function MailTo() {
     subject: "",
     body: "",
   });
+
+  const [state, setStates] = useState({
+    copied: false,
+  });
+
   function handleInputChange(e: any) {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     setValues({ ...values, [name]: value });
+  }
+
+  function handleOpen() {
+    setStates({ ...state, copied: true });
+  }
+  function handleClose() {
+    setStates({ ...state, copied: false });
   }
 
   let url = `mailto:${values.email}`;
@@ -51,6 +65,9 @@ export default function MailTo() {
 
   return (
     <Grid container direction="column" className={classes.root}>
+      <Typography variant="h4" component="h1" align="center">
+        メールテンプレート作成
+      </Typography>
       <Grid container direction="row">
         <Grid
           container
@@ -61,6 +78,9 @@ export default function MailTo() {
           xs={12}
           md={6}
         >
+          <Typography variant="h5" component="h2">
+            ①入力
+          </Typography>
           <form noValidate autoComplete="off">
             <TextField
               id="email"
@@ -90,7 +110,7 @@ export default function MailTo() {
               name="body"
               onChange={handleInputChange}
               multiline
-              rowsMax={10}
+              rows={6}
               fullWidth
               margin="normal"
             />
@@ -109,9 +129,15 @@ export default function MailTo() {
         </Grid>
       </Grid>
 
-      <Typography variant="h5" component="p">
+      {/* 2.確認 */}
+      <Typography variant="h5" component="h2" align="center">
+        ②確認
+      </Typography>
+
+      <Typography variant="body1" component="code">
         {url}
       </Typography>
+
       <Button
         variant="outlined"
         color="primary"
@@ -122,11 +148,25 @@ export default function MailTo() {
         動作確認用リンク
       </Button>
 
-      <CopyToClipboard text={url}>
+      {/* 3.コピー */}
+      <Typography variant="h5" component="h2" align="center">
+        ③コピー
+      </Typography>
+      <CopyToClipboard text={url} onCopy={handleOpen}>
         <Button variant="contained" color="primary">
           URLをクリップボードにコピーする
         </Button>
       </CopyToClipboard>
+
+      <Snackbar
+        open={state.copied}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} variant="filled" severity="success">
+          コピーされました
+        </Alert>
+      </Snackbar>
     </Grid>
   );
 }
