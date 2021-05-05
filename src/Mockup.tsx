@@ -28,7 +28,7 @@ export default function Mockup(props: any) {
   const values = props.values;
 
   return (
-    <IPhone7 height={500} orientation="portrait" color="black">
+    <IPhone7 height={750} orientation="portrait" color="black">
       <Grid
         direction="column"
         component={Paper}
