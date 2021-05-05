@@ -96,7 +96,7 @@ export default function MailTo() {
               name="body"
               onChange={handleInputChange}
               multiline
-              rowsMax={10}
+              rows={6}
               fullWidth
               margin="normal"
             />
