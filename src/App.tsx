@@ -1,12 +1,16 @@
 import React from "react";
-import "./App.css";
 import MailTo from "./MailTo";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Container from "@material-ui/core/Container";
 
 function App() {
   return (
-    <div className="App">
-      <MailTo />
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <MailTo />
+      </Container>
+    </React.Fragment>
   );
 }
 
