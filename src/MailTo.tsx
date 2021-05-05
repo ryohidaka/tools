@@ -67,12 +67,14 @@ export default function MailTo() {
 
   function componentDidLoad(values: Values) {
     const payload = JSON.parse(localStorage.getItem("values") as any);
-    setValues({
-      ...values,
-      email: payload.email,
-      subject: payload.subject,
-      body: payload.body,
-    });
+    if (payload) {
+      setValues({
+        ...values,
+        email: payload.email,
+        subject: payload.subject,
+        body: payload.body,
+      });
+    }
   }
 
   let url = `mailto:${values.email}`;
