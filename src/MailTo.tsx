@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -23,6 +23,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
+type Values = {
+  email: string;
+  subject: string;
+  body: string;
+};
+
 export default function MailTo() {
   const classes = useStyles();
   const [values, setValues] = useState({
@@ -44,9 +50,30 @@ export default function MailTo() {
 
   function handleOpen() {
     setStates({ ...state, copied: true });
+    componentDidUpdate(values);
   }
   function handleClose() {
     setStates({ ...state, copied: false });
+  }
+
+  //[永続化] LocalStorageに格納
+  function componentDidUpdate(values: Values) {
+    localStorage.setItem("values", JSON.stringify(values));
+  }
+
+  //[永続化] LocalStorageに格納
+  useEffect(() => {
+    componentDidLoad(values);
+  }, []);
+
+  function componentDidLoad(values: Values) {
+    const payload = JSON.parse(localStorage.getItem("values") as any);
+    setValues({
+      ...values,
+      email: payload.email,
+      subject: payload.subject,
+      body: payload.body,
+    });
   }
 
   let url = `mailto:${values.email}`;
@@ -91,6 +118,7 @@ export default function MailTo() {
               onChange={handleInputChange}
               fullWidth
               margin="normal"
+              defaultValue={values.email}
             />
             <TextField
               id="subject"
@@ -101,6 +129,7 @@ export default function MailTo() {
               onChange={handleInputChange}
               fullWidth
               margin="normal"
+              defaultValue={values.subject}
             />
             <TextField
               id="body"
@@ -113,6 +142,7 @@ export default function MailTo() {
               rows={6}
               fullWidth
               margin="normal"
+              defaultValue={values.body}
             />
           </form>
         </Grid>
