@@ -3,7 +3,9 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Typography, Button, Snackbar } from "@material-ui/core";
+import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
+import Alert from "@material-ui/lab/Alert";
 
 import Mockup from "./Mockup";
 
@@ -28,11 +30,23 @@ export default function MailTo() {
     subject: "",
     body: "",
   });
+
+  const [state, setStates] = useState({
+    copied: false,
+  });
+
   function handleInputChange(e: any) {
     const target = e.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     setValues({ ...values, [name]: value });
+  }
+
+  function handleOpen() {
+    setStates({ ...state, copied: true });
+  }
+  function handleClose() {
+    setStates({ ...state, copied: false });
   }
 
   let url = `mailto:${values.email}`;
@@ -138,11 +152,21 @@ export default function MailTo() {
       <Typography variant="h5" component="h2" align="center">
         ③コピー
       </Typography>
-      <CopyToClipboard text={url}>
+      <CopyToClipboard text={url} onCopy={handleOpen}>
         <Button variant="contained" color="primary">
           URLをクリップボードにコピーする
         </Button>
       </CopyToClipboard>
+
+      <Snackbar
+        open={state.copied}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      >
+        <Alert onClose={handleClose} variant="filled" severity="success">
+          コピーされました
+        </Alert>
+      </Snackbar>
     </Grid>
   );
 }
