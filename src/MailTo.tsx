@@ -4,7 +4,6 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 import { Grid, Typography, Button, Snackbar } from "@material-ui/core";
-import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
 import Alert from "@material-ui/lab/Alert";
 
 import Mockup from "./Mockup";
@@ -64,16 +63,18 @@ export default function MailTo() {
   //[永続化] LocalStorageに格納
   useEffect(() => {
     componentDidLoad(values);
-  }, []);
+  }, [values]);
 
   function componentDidLoad(values: Values) {
     const payload = JSON.parse(localStorage.getItem("values") as any);
-    setValues({
-      ...values,
-      email: payload.email,
-      subject: payload.subject,
-      body: payload.body,
-    });
+    if (payload) {
+      setValues({
+        ...values,
+        email: payload.email,
+        subject: payload.subject,
+        body: payload.body,
+      });
+    }
   }
 
   let url = `mailto:${values.email}`;
