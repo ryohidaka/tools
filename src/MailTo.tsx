@@ -7,6 +7,7 @@ import { Grid, Typography, Button, Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
 import Mockup from "./Mockup";
+import QRCodeGen from "./QRCodeGen";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -198,6 +199,11 @@ export default function MailTo() {
           コピーされました
         </Alert>
       </Snackbar>
+        {/* 4.QRコード */}
+          <Typography variant="h5" component="h2" align="center">
+            ④QRコード
+          </Typography>
+          <QRCodeGen values={values} url={url} />
     </Grid>
   );
 }
