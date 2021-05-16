@@ -7,6 +7,7 @@ import { Grid, Typography, Button, Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
 import Mockup from "./Mockup";
+import QRCodeGen from "./QRCodeGen";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -179,25 +180,53 @@ export default function MailTo() {
         動作確認用リンク
       </Button>
 
-      {/* 3.コピー */}
-      <Typography variant="h5" component="h2" align="center">
-        ③コピー
-      </Typography>
-      <CopyToClipboard text={url} onCopy={handleOpen}>
-        <Button variant="contained" color="primary">
-          URLをクリップボードにコピーする
-        </Button>
-      </CopyToClipboard>
+      <Grid container direction="row">
+        {/* 3.コピー */}
+        <Grid
+          container
+          item
+          direction="column"
+          justify="space-between"
+          alignItems="center"
+          xs={12}
+          md={6}
+        >
+          <Typography variant="h5" component="h2" align="center">
+            ③コピー
+          </Typography>
+          <CopyToClipboard text={url} onCopy={handleOpen}>
+            <Button variant="contained" color="primary">
+              URLをクリップボードにコピーする
+            </Button>
+          </CopyToClipboard>
 
-      <Snackbar
-        open={state.copied}
-        autoHideDuration={6000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} variant="filled" severity="success">
-          コピーされました
-        </Alert>
-      </Snackbar>
+          <Snackbar
+            open={state.copied}
+            autoHideDuration={6000}
+            onClose={handleClose}
+          >
+            <Alert onClose={handleClose} variant="filled" severity="success">
+              コピーされました
+            </Alert>
+          </Snackbar>
+        </Grid>
+
+        {/* 4.QRコード */}
+        <Grid
+          container
+          item
+          direction="column"
+          justify="space-between"
+          alignItems="center"
+          xs={12}
+          md={6}
+        >
+          <Typography variant="h5" component="h2" align="center">
+            ④QRコード
+          </Typography>
+          <QRCodeGen values={values} url={url} />
+        </Grid>
+      </Grid>
     </Grid>
   );
 }
