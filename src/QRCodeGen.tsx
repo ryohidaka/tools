@@ -11,7 +11,7 @@ export default function QRCodeGen(props: any) {
     const canvas: any = document.querySelector("canvas");
     const a = document.createElement("a");
     a.href = canvas.toDataURL("image/jpeg", 0.85);
-    a.download = `qrcode_${values.subject || "noname"}` + ".jpg";
+    a.download = `qrcode_${values.subject || "noname"}.jpg`;
     a.click();
   }
 
