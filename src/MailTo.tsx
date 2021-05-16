@@ -64,7 +64,7 @@ export default function MailTo() {
 
   //[永続化] LocalStorageから取得
   useEffect(() => {
-    componentDidLoad(values);
+    componentDidLoad(values); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function componentDidLoad(values: Values) {
