@@ -59,16 +59,18 @@ export default function MailTo() {
   //[永続化] LocalStorageに格納
   function componentDidUpdate(values: Values) {
     localStorage.setItem("values", JSON.stringify(values));
+    console.log("下書きが保存されました");
   }
 
   //[永続化] LocalStorageに格納
   useEffect(() => {
     componentDidLoad(values);
-  }, [values]);
+  }, []);
 
   function componentDidLoad(values: Values) {
     const payload = JSON.parse(localStorage.getItem("values") as any);
     if (payload) {
+      console.log("下書きを読み込みました");
       setValues({
         ...values,
         email: payload.email,
@@ -120,7 +122,7 @@ export default function MailTo() {
               onChange={handleInputChange}
               fullWidth
               margin="normal"
-              defaultValue={values.email}
+              value={values.email}
             />
             <TextField
               id="subject"
@@ -131,7 +133,7 @@ export default function MailTo() {
               onChange={handleInputChange}
               fullWidth
               margin="normal"
-              defaultValue={values.subject}
+              value={values.subject}
             />
             <TextField
               id="body"
