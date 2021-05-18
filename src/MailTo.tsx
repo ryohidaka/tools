@@ -80,6 +80,11 @@ export default function MailTo() {
     }
   }
 
+  function textFileUrl(url: string) {
+    const data = new Blob([url], { type: "text/plain" });
+    return window.URL.createObjectURL(data);
+  }
+
   let url = `mailto:${values.email}`;
   if (values.subject) {
     url += `?subject=${values.subject}`;
@@ -201,6 +206,15 @@ export default function MailTo() {
               URLをクリップボードにコピーする
             </Button>
           </CopyToClipboard>
+
+          <Button
+            variant="contained"
+            color="primary"
+            download={`${values.subject}_URL.txt`}
+            href={textFileUrl(url)}
+          >
+            テキストファイルに保存する
+          </Button>
 
           <Snackbar
             open={state.copied}
