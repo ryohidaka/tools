@@ -9276,10 +9276,10 @@ react-dev-utils@^11.0.3:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-device-mockups@^0.1.10:
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/react-device-mockups/-/react-device-mockups-0.1.10.tgz#f388ea956b438eae0e92f1c05767adb286c349bd"
-  integrity sha512-jQ7t5ZZS/8jWAWAgM4JBINCaTfh9fLDFfAB6PlRUtTSZ/FyxERZnA1S4CRJXWR1VIh2Ox45G5nn/wtvHoVRzvQ==
+react-device-mockups@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/react-device-mockups/-/react-device-mockups-0.1.11.tgz#d1ace09c08034d0146430de2bfe257a83bf2f1e4"
+  integrity sha512-HoHYHFDRS47xpy4Fa2c7Q9R4wCK24fR64l0jSqHUmfQ58TojFYb3zGBTTTOYNUCGcmNCfu25Agar+qHMu2RW7w==
 
 react-dom@^17.0.2:
   version "17.0.2"
