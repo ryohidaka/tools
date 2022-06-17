@@ -7,7 +7,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
-    "@testing-library/user-event": "^14.1.0",
+    "@testing-library/user-event": "^14.2.1",
     "@types/jest": "^28.1.2",
     "@types/node": "^17.0.30",
     "@types/qrcode.react": "^1.0.2",
