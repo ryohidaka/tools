@@ -48,6 +48,6 @@
     ]
   },
   "devDependencies": {
-    "@types/react-copy-to-clipboard": "^5.0.2"
+    "@types/react-copy-to-clipboard": "^5.0.3"
   }
 }
